@@ -11,7 +11,7 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
-  plugins: ['simple-import-sort', 'react'],
+  plugins: ['simple-import-sort', 'react', 'better-styled-components'],
   settings: {
     react: {
       version: 'detect',
@@ -40,6 +40,7 @@ module.exports = {
     'sort-imports': 'off',
     'newline-per-chained-call': 'off',
     'no-unused-vars': 'off',
+    'better-styled-components/sort-declarations-alphabetically': 2,
   },
   overrides: [
     {

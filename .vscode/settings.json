@@ -13,5 +13,6 @@
   "eslint.validate": ["javascript", "typescript"],
   "prettier.disableLanguages": ["javascript", "typescript"],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": []
+  "cSpell.words": [],
+  "cSpell.ignoreWords": []
 }

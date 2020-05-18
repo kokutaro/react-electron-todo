@@ -17,7 +17,8 @@
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["node_modules/@types", "src/@types"],
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["react"]
   },
   "files": ["src/main.ts"]
 }
