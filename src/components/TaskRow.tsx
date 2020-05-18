@@ -88,7 +88,7 @@ const TaskRow: React.FC<{ data: Task }> = (props: { data: Task }) => {
   );
 
   return (
-    <TaskCell expiration={expiration} onClick={onRowClick}>
+    <TaskCell className="taskCell" expiration={expiration} onClick={onRowClick}>
       <TaskCheckBox>
         <TaskCheck>{data.complete ? '✔' : null}</TaskCheck>
       </TaskCheckBox>
@@ -96,7 +96,9 @@ const TaskRow: React.FC<{ data: Task }> = (props: { data: Task }) => {
         <TaskName>{data.taskName}</TaskName>
         <DeadLine>⏰{deadLineString}</DeadLine>
       </TaskBody>
-      <TaskRemove onClick={onDeleteClick}>❌</TaskRemove>
+      <TaskRemove className="deleteButton" onClick={onDeleteClick}>
+        ❌
+      </TaskRemove>
     </TaskCell>
   );
 };
