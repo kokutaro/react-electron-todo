@@ -1,5 +1,5 @@
-import User from './User';
+import { TaskList } from './Task';
 
 export interface State {
-  user: User;
+  taskList: TaskList;
 }
