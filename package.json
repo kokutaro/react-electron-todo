@@ -1,6 +1,6 @@
 {
   "name": "react-electron-todo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TODO",
   "main": "./dist/main.js",
   "scripts": {
@@ -25,6 +25,10 @@
   "build": {
     "productName": "TODO",
     "appId": "todo.example.com",
+    "publish": {
+      "provider": "github",
+      "releaseType": "draft"
+    },
     "directories": {
       "output": "./product"
     },
@@ -96,6 +100,7 @@
     "css-loader": "^3.5.3",
     "electron": "^8.3.0",
     "electron-builder": "^22.6.0",
+    "electron-notarize": "^0.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
