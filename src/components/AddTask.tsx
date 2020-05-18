@@ -5,7 +5,7 @@ import React, { ChangeEvent, useCallback, useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 
-import { addTaskAction } from '../actions/TaskActions';
+import { addTask } from '../actions/TaskActions';
 import { styled } from './FoundationStyles';
 
 //#region Styled Component
@@ -56,13 +56,14 @@ const AddTask: React.FC = () => {
   }, []);
 
   const onClickAddButton = useCallback(() => {
-    dispatch(
-      addTaskAction({
+    addTask(
+      {
         complete: false,
         deadline,
         taskName,
         id: '',
-      }),
+      },
+      dispatch,
     );
   }, [deadline, taskName]);
 

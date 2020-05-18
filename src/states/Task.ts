@@ -6,5 +6,10 @@ export interface Task {
 }
 
 export interface TaskList {
+  /** List of tasks */
   tasks: Task[];
+  /** Check if task is loading */
+  loading: boolean;
+  /** Failure message */
+  failureMessage: string;
 }

@@ -1,45 +1,94 @@
-import moment from 'moment';
+import '../core/CoreInterface';
+
 import { Dispatch } from 'redux';
 import { actionCreatorFactory } from 'typescript-fsa';
 
 import { Task } from '../states/Task';
+
 const actionCreator = actionCreatorFactory('TASK_ACTIONS');
 
-export const showTaskListAction = actionCreator<Task[]>('SHOW_TASK_LIST');
+export const showTaskListAction = actionCreator.async<null, Task[], string>('SHOW_TASK_LIST');
 
-export const addTaskAction = actionCreator<Task>('ADD');
+export const getTaskList = async (dispatch: Dispatch): Promise<void> => {
+  dispatch(showTaskListAction.started(null));
+  const taskList = await window.core.loadTaskList().catch((e) => {
+    console.error(e);
+    dispatch(
+      showTaskListAction.failed({
+        error: e.toString(),
+        params: null,
+      }),
+    );
+  });
+  if (!taskList) {
+    return;
+  }
+  dispatch(showTaskListAction.done({ result: taskList, params: null }));
+};
 
-export const toggleCompleteAction = actionCreator<string>('TOGGLE_COMPLETE');
+export const addTask = async (task: Task, dispatch: Dispatch): Promise<void> => {
+  dispatch(showTaskListAction.started(null));
+  const taskList = await window.core.saveTask(task).catch((e) => {
+    console.error(e);
+    dispatch(
+      showTaskListAction.failed({
+        error: e.toString(),
+        params: null,
+      }),
+    );
+  });
+  if (!taskList) {
+    return;
+  }
+  dispatch(
+    showTaskListAction.done({
+      result: taskList,
+      params: null,
+    }),
+  );
+};
 
-export const deleteTaskAction = actionCreator<string>('DELETE');
+export const toggleTask = async (task: Task, dispatch: Dispatch): Promise<void> => {
+  dispatch(showTaskListAction.started(null));
+  task.complete = !task.complete;
+  const taskList = await window.core.saveTask(task).catch((e) => {
+    console.error(e);
+    dispatch(
+      showTaskListAction.failed({
+        error: e.toString(),
+        params: null,
+      }),
+    );
+  });
+  if (!taskList) {
+    return;
+  }
+  dispatch(
+    showTaskListAction.done({
+      result: taskList,
+      params: null,
+    }),
+  );
+};
 
-const dummyTask: Task[] = [
-  {
-    complete: false,
-    deadline: moment().add(1, 'd').toDate(),
-    id: '0',
-    taskName: 'Task 1',
-  },
-  {
-    complete: true,
-    deadline: moment().add(1, 'd').toDate(),
-    id: '1',
-    taskName: 'Task 2',
-  },
-  {
-    complete: false,
-    deadline: moment().add(-1, 'd').toDate(),
-    id: '3',
-    taskName: 'Task 3',
-  },
-  {
-    complete: true,
-    deadline: moment().add(-1, 'd').toDate(),
-    id: '4',
-    taskName: 'Task 4',
-  },
-];
-
-export const getTaskList = (dispatch: Dispatch): void => {
-  dispatch(showTaskListAction(dummyTask));
+export const deleteTask = async (taskId: string, dispatch: Dispatch): Promise<void> => {
+  dispatch(showTaskListAction.started(null));
+  const taskList = await window.core.deleteTask(taskId).catch((e) => {
+    console.error(e);
+    dispatch(
+      showTaskListAction.failed({
+        error: e.toString(),
+        params: null,
+      }),
+    );
+  });
+  if (!taskList) {
+    return;
+  }
+  dispatch(
+    showTaskListAction.done({
+      result: taskList,
+      params: null,
+    }),
+  );
 };

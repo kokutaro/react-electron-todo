@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { MouseEvent, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { deleteTaskAction, toggleCompleteAction } from '../actions/TaskActions';
+import { deleteTask, toggleTask } from '../actions/TaskActions';
 import { Task } from '../states/Task';
 import { styled } from './FoundationStyles';
 
@@ -76,12 +76,12 @@ const TaskRow: React.FC<{ data: Task }> = (props: { data: Task }) => {
   }, [data.deadline]);
 
   const onRowClick = useCallback(() => {
-    dispatch(toggleCompleteAction(data.id));
+    toggleTask(data, dispatch);
   }, [data.id]);
 
   const onDeleteClick = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      dispatch(deleteTaskAction(data.id));
+      deleteTask(data.id, dispatch);
       e.stopPropagation();
     },
     [data.id],
