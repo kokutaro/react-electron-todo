@@ -7,6 +7,6 @@ const combinedReducer = combineReducers<State>({
   taskList: taskReducer,
 });
 
-const store = createStore(combinedReducer);
+const appStore = createStore(combinedReducer);
 
-export default store;
+export default appStore;
