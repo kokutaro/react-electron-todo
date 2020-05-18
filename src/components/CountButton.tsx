@@ -6,11 +6,11 @@ interface Props {
   onClick: () => void;
 }
 
-const CountButton: React.FC<Props> = (props) => {
+const CountButton: React.FC<Props> = ({ onClick, label, count }: Props) => {
   return (
     <>
-      <button onClick={props.onClick}>{props.label}</button>
-      <span style={{ marginLeft: '1em' }}>{props.count}</span>
+      <button onClick={onClick}>{label}</button>
+      <span style={{ marginLeft: '1em' }}>{count}</span>
     </>
   );
 };

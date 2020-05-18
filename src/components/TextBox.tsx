@@ -14,7 +14,7 @@ interface Props {
   onChangeText: (value: string) => void;
 }
 
-const TextBox: React.FC<Props> = (props) => {
+const TextBox: React.FC<Props> = (props: Props) => {
   const label = useMemo(() => {
     return props.label ? <label>{props.label}</label> : null;
   }, [props.label]);

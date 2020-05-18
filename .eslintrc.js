@@ -1,5 +1,4 @@
 /** @type {import('eslint').Linter.Config} */
-
 module.exports = {
   root: true,
   extends: [
@@ -7,16 +6,27 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
+    'plugin:react/recommended',
     'plugin:import/typescript',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
-  plugins: ['simple-import-sort'],
+  plugins: ['simple-import-sort', 'react'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   env: {
     es6: true,
     node: true,
     jest: true,
     browser: true,
+  },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',

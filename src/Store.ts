@@ -7,6 +7,6 @@ const combinedReducer = combineReducers<State>({
   user: userReducer,
 });
 
-export const store = createStore(combinedReducer);
+const store = createStore(combinedReducer);
 
 export default store;

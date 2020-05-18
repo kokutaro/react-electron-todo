@@ -9,7 +9,14 @@
     "build": "run-p build:*",
     "build:main": "tsc",
     "build:render": "webpack",
-    "start": "electron ./dist/main.js"
+    "start": "electron ./dist/main.js",
+    "fix": "run-p fix:*",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint --ext js,ts .",
+    "lint:prettier": "prettier -l \"**/*.{json,md,yml}\"",
+    "lint:type": "tsc --noEmit"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +30,7 @@
     "typescript-fsa-reducers": "^1.2.1"
   },
   "devDependencies": {
+    "@types/eslint": "^6.8.1",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.8",
@@ -34,6 +42,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-simple-import-sort": "5.0.3",
     "html-webpack-plugin": "^4.3.0",
     "npm-run-all": "^4.1.5",
