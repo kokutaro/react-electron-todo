@@ -1,24 +1,65 @@
 {
   "name": "react-electron-todo",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "description": "TODO",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "jest",
     "prebuild": "rimraf dist",
     "build": "run-p build:*",
-    "build:main": "tsc",
     "build:render": "webpack",
-    "start": "electron ./dist/main.js",
+    "build:main": "tsc",
+    "start": "electron ./ --debug",
     "fix": "run-p fix:*",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run lint:prettier -- --write",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext js,ts .",
     "lint:prettier": "prettier -l \"**/*.{json,md,yml}\"",
-    "lint:type": "tsc --noEmit"
+    "lint:type": "tsc --noEmit",
+    "package": "run-p package:*",
+    "package:win": "npm run build && electron-builder --win --x64",
+    "package:mac": "npm run build && electron-builder --mac --x64",
+    "package:linux": "npm run build && electron-builder --linux --x64"
   },
-  "author": "",
+  "build": {
+    "productName": "TODO",
+    "appId": "todo.example.com",
+    "directories": {
+      "output": "./product"
+    },
+    "files": [
+      "./dist/**/*",
+      "./index.html",
+      "./icons/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "./icons/todo.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "./icons/todo.ico",
+      "target": "msi"
+    }
+  },
+  "author": "Hiromi Kohara",
   "license": "ISC",
   "dependencies": {
     "eslint-loader": "^4.0.2",
@@ -32,6 +73,7 @@
     "reset-css": "^5.0.1",
     "shortid": "^2.2.15",
     "styled-components": "^5.1.0",
+    "tslib": "^2.0.0",
     "typescript-fsa": "^3.0.0",
     "typescript-fsa-reducers": "^1.2.1"
   },
@@ -53,6 +95,7 @@
     "@typescript-eslint/parser": "2.33.0",
     "css-loader": "^3.5.3",
     "electron": "^8.3.0",
+    "electron-builder": "^22.6.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",

@@ -8,7 +8,7 @@ import Core from './CoreInterface';
 
 const dataFilePath = path.join(os.homedir(), 'todo.json');
 
-const setTimeoutPromise = (count: number): Promise<void> => {
+export const setTimeoutPromise = (count: number): Promise<void> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
@@ -43,7 +43,6 @@ const loadTaskList = async (): Promise<Task[]> => {
   const jsonData = (await fs.readJSON(dataFilePath, {
     reviver: __private__.reviver,
   })) as { data: Task[] };
-  await setTimeoutPromise(500);
   return jsonData.data;
 };
 
@@ -59,7 +58,6 @@ const saveTaskList = async (taskList: Task[]): Promise<void> => {
 };
 
 const saveTask = async (task: Task): Promise<Task[]> => {
-  await setTimeoutPromise(500);
   const taskList = await loadTaskList();
   const existTask = taskList.find((pTask) => pTask.id === task.id);
   if (!task.id || !existTask) {
@@ -75,7 +73,6 @@ const saveTask = async (task: Task): Promise<Task[]> => {
 };
 
 const deleteTask = async (id: string): Promise<Task[]> => {
-  await setTimeoutPromise(500);
   const taskList = await loadTaskList();
   const deletedTaskList = taskList.filter((task) => task.id !== id);
   await saveTaskList(deletedTaskList);

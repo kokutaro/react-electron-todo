@@ -13,9 +13,11 @@ const createWindow = (): void => {
     },
   });
 
-  win.loadFile('./index.html');
+  win.loadFile(path.join(__dirname, './index.html'));
 
-  win.webContents.openDevTools();
+  if (process.argv.find((arg) => arg === '--debug')) {
+    win.webContents.openDevTools();
+  }
 };
 
 app.whenReady().then(createWindow);
