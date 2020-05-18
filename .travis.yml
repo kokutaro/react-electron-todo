@@ -12,7 +12,7 @@ jobs:
       language: node_js
       node_js: 12
       script:
-        - npm t
+        - npm t --coverage --updateSnapshot
     - stage: Deploy Mac
       if: (branch = master AND type = push) OR type = pull_request
       os: osx
