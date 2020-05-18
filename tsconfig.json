@@ -17,8 +17,9 @@
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["node_modules/@types", "src/@types"],
-    "sourceMap": true,
-    "types": ["react"]
+    "types": ["react"],
+    "inlineSourceMap": true,
+    "inlineSources": true
   },
-  "files": ["src/main.ts"]
+  "files": ["src/main.ts", "src/core/preLoad.ts"]
 }
