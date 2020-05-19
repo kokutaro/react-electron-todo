@@ -18,9 +18,8 @@
     "lint:prettier": "prettier -l \"**/*.{json,md,yml}\"",
     "lint:type": "tsc --noEmit",
     "package": "run-p package:*",
-    "package:win": "npm run build && electron-builder --win --x64",
-    "package:mac": "npm run build && electron-builder --mac --x64",
-    "package:linux": "npm run build && electron-builder --linux --x64"
+    "package:winlinux": "npm run build && electron-builder -- --win --linux --x64",
+    "package:mac": "npm run build && electron-builder --mac --x64"
   },
   "build": {
     "productName": "TODO",
@@ -100,7 +99,6 @@
     "css-loader": "^3.5.3",
     "electron": "^8.3.0",
     "electron-builder": "^22.6.0",
-    "electron-notarize": "^0.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
