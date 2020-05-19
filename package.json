@@ -17,8 +17,7 @@
     "lint:eslint": "eslint --ext js,ts .",
     "lint:prettier": "prettier -l \"**/*.{json,md,yml}\"",
     "lint:type": "tsc --noEmit",
-    "package": "run-p package:*",
-    "package:winlinux": "npm run build && electron-builder -- --win --linux --x64",
+    "package": "electron-builder",
     "package:mac": "npm run build && electron-builder --mac --x64"
   },
   "build": {
