@@ -8,11 +8,13 @@ jobs:
   include:
     - stage: Test
       os: linux
-      dist: trusty
       language: node_js
       node_js: 12
+      install:
+        - npm install -g codecov
       script:
         - jest --coverage --updateSnapshot
+        - codecov
     - stage: Deploy Mac
       if: (branch = master AND type = push) OR type = pull_request
       os: osx
@@ -36,7 +38,7 @@ jobs:
             -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
             -e CI=$CI \
             -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
-            -v ${PWD}:/product \
+            -v ${PWD}:/project \
             -v ~/.cache/electron:/root/.cache/electron \
             -v ~/.cache/electron-builder:/root/.cache/electron-builder \
             electronuserland/builder:wine \
