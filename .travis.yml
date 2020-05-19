@@ -47,5 +47,5 @@ jobs:
             /bin/bash -c "\
               npm install && \
               npm run build \
-              npm run electron-builder -- --win --linux --x64
+              electron-builder -- --win --linux --x64
             "
